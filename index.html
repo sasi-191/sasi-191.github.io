@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sasi Karthik Bezawada | Python Full Stack Developer</title>
+  <meta name="description" content="Portfolio of Sasi Karthik Bezawada, Python Full Stack Developer (FastAPI, SQLAlchemy, PostgreSQL, React).">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- top navigation -->
+  <nav class="navbar">
+    <a href="#home" class="logo">Sasi<span>.</span></a>
+    <button class="menu-button" id="menu-button">Menu</button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- hero -->
+  <header class="hero" id="home">
+    <p class="hello">Hi, I'm</p>
+    <h1>Sasi Karthik Bezawada</h1>
+    <h2>Python Full Stack Developer</h2>
+    <p class="intro">
+      I build complete web applications with FastAPI, SQLAlchemy, PostgreSQL and React,
+      from data pipelines and broker APIs to Telegram bots and dashboards.
+    </p>
+    <div class="hero-buttons">
+      <a href="#projects" class="button">See my projects</a>
+      <a href="resume.pdf" class="button outline" target="_blank">Download resume</a>
+    </div>
+  </header>
+
+  <!-- about -->
+  <section id="about">
+    <h3 class="section-title">About me</h3>
+    <div class="about-box">
+      <p>
+        I am a Python developer from Vijayawada. I like building things that run by themselves and
+        solve a real problem: an investing bot that downloads market data every evening and trades a
+        paper account, and a Telegram bot that collects a team's daily standups.
+      </p>
+      <p>
+        I learned Python full stack development through hands-on projects: REST APIs with FastAPI,
+        databases with PostgreSQL and SQLAlchemy, frontends with React, and Git and Docker for shipping.
+        I write tests for my code and keep it simple enough for anyone to read.
+      </p>
+      <div class="facts">
+        <div><b>3</b><span>full-stack projects</span></div>
+        <div><b>2,700+</b><span>stocks in my data pipeline</span></div>
+        <div><b>19</b><span>pytest tests written</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- skills -->
+  <section id="skills">
+    <h3 class="section-title">Skills</h3>
+    <div class="skill-grid">
+      <div class="skill-card">
+        <h4>Backend</h4>
+        <p>Python, FastAPI, REST APIs, SQLAlchemy, Pydantic, Telegram Bot API</p>
+      </div>
+      <div class="skill-card">
+        <h4>Databases</h4>
+        <p>PostgreSQL, MySQL, SQLite, schema design, joins, indexes</p>
+      </div>
+      <div class="skill-card">
+        <h4>Frontend</h4>
+        <p>React, JavaScript (ES6+), HTML, CSS, Flexbox, Grid</p>
+      </div>
+      <div class="skill-card">
+        <h4>Tools</h4>
+        <p>Git, GitHub, Docker, Docker Compose, pytest, VS Code</p>
+      </div>
+      <div class="skill-card">
+        <h4>Data</h4>
+        <p>pandas, NumPy, data pipelines, backtesting</p>
+      </div>
+      <div class="skill-card">
+        <h4>AI-assisted development</h4>
+        <p>Claude Code, ChatGPT for debugging and code review</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- projects -->
+  <section id="projects">
+    <h3 class="section-title">Projects</h3>
+
+    <div class="project-card">
+      <div class="project-top">
+        <h4>Systematic Investing Platform</h4>
+        <a href="https://github.com/sasi-191/systematic-investing-platform" target="_blank">GitHub &rarr;</a>
+      </div>
+      <p>
+        A rule-based investing bot for NSE stocks. Every two weeks it holds the 5 strongest stocks
+        of the last 6 months, and it moves to cash when the market turns weak.
+      </p>
+      <ul>
+        <li>Downloads daily prices for 2,700+ NSE stocks and runs by itself every weekday evening</li>
+        <li>Paper trading engine with profits reinvested</li>
+        <li>Fyers broker login, live prices and live P&amp;L; real orders locked behind safety checks</li>
+        <li>React dashboard with a performance chart against Nifty 50, and Telegram alerts</li>
+      </ul>
+      <div class="tags">
+        <span>Python</span><span>FastAPI</span><span>SQLAlchemy</span><span>pandas</span>
+        <span>React</span><span>Fyers API</span><span>Docker</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <h4>Standup Bot</h4>
+        <a href="https://github.com/sasi-191/standup-bot" target="_blank">GitHub &rarr;</a>
+      </div>
+      <p>
+        A Telegram bot that collects daily standups from a team and shows them on a live dashboard.
+      </p>
+      <ul>
+        <li>Asks three questions and saves the answers in PostgreSQL</li>
+        <li>10 AM reminders, blocker alerts to the manager and a Friday weekly summary</li>
+        <li>Dashboard with search, date filter and a list of who is missing today</li>
+      </ul>
+      <div class="tags">
+        <span>Python</span><span>Telegram Bot API</span><span>FastAPI</span>
+        <span>PostgreSQL</span><span>React</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <h4>Digital Wallet</h4>
+        <a href="https://github.com/sasi-191/digital-wallet" target="_blank">GitHub &rarr;</a>
+      </div>
+      <p>
+        A small wallet app like a mini Paytm: sign up, add money, send money and see your history.
+      </p>
+      <ul>
+        <li>Double entry ledger so every rupee is accounted for</li>
+        <li>The same payment request sent twice is never paid twice</li>
+        <li>Money stored in paise to avoid decimal errors, with a limit on transfers per minute</li>
+      </ul>
+      <div class="tags">
+        <span>Python</span><span>FastAPI</span><span>SQLAlchemy</span><span>React</span><span>pytest</span>
+      </div>
+    </div>
+
+    <div class="project-card small">
+      <div class="project-top">
+        <h4>WearHug (early web project)</h4>
+        <a href="https://sasi-191.github.io/wearhug/" target="_blank">Live site &rarr;</a>
+      </div>
+      <p>A clothing store website I built while learning HTML and CSS.</p>
+      <div class="tags"><span>HTML</span><span>CSS</span></div>
+    </div>
+  </section>
+
+  <!-- education -->
+  <section id="education">
+    <h3 class="section-title">Education</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h4>Bachelor of Science (B.Sc.)</h4>
+        <p>Nalanda Degree College, Vijayawada &middot; CGPA 7.0</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Intermediate (MPC)</h4>
+        <p>Narayana Junior College, Gudavalli &middot; CGPA 8.65</p>
+      </div>
+      <div class="timeline-item">
+        <h4>SSC (Class 10)</h4>
+        <p>Narayana School, Gannavaram &middot; CGPA 9.3</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- contact -->
+  <section id="contact">
+    <h3 class="section-title">Contact</h3>
+    <div class="contact-box">
+      <p>I am looking for a Python Backend or Full Stack Developer role. Happy to talk!</p>
+      <div class="hero-buttons">
+        <a href="mailto:bsasikarthik199@gmail.com" class="button">Email me</a>
+        <a href="https://github.com/sasi-191" class="button outline" target="_blank">GitHub</a>
+      </div>
+      <p class="small-text">bsasikarthik199@gmail.com &middot; Vijayawada, Andhra Pradesh</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Sasi Karthik Bezawada</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
