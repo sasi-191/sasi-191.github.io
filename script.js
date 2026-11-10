@@ -31,6 +31,3 @@ const watcher = new IntersectionObserver(function (entries) {
 for (const section of sections) {
   watcher.observe(section);
 }
-
-// the year in the footer
-document.getElementById("year").textContent = new Date().getFullYear();
