@@ -14,5 +14,23 @@ for (const link of links) {
   });
 }
 
+// fade in each section when it comes on the screen
+const sections = document.querySelectorAll("section");
+for (const section of sections) {
+  section.classList.add("reveal");
+}
+
+const watcher = new IntersectionObserver(function (entries) {
+  for (const entry of entries) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+    }
+  }
+}, { threshold: 0.15 });
+
+for (const section of sections) {
+  watcher.observe(section);
+}
+
 // the year in the footer
 document.getElementById("year").textContent = new Date().getFullYear();

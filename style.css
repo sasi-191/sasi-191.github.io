@@ -1,16 +1,12 @@
 /* my colours */
 :root {
-  --dark: #0d1117;
-  --card: #161b26;
-  --text: #d7dde5;
-  --muted: #8b98a8;
-  --teal: #2dd4bf;
-  --purple: #a78bfa;
-  --pink: #f472b6;
-  --orange: #fb923c;
-  --yellow: #facc15;
-  --blue: #60a5fa;
-  --rainbow: linear-gradient(90deg, #2dd4bf, #60a5fa, #a78bfa, #f472b6);
+  --dark: #0f141b;
+  --card: #171e27;
+  --text: #d5dbe3;
+  --muted: #8a96a6;
+  --accent: #2dd4bf;
+  --accent-soft: rgba(45, 212, 191, 0.12);
+  --blue: #7aa7e8;
 }
 
 * {
@@ -31,8 +27,44 @@ body {
 }
 
 a {
-  color: var(--teal);
+  color: var(--accent);
   text-decoration: none;
+}
+
+/* ---------- simple animations ---------- */
+
+/* the hero text slides up a little when the page opens */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero > * {
+  animation: fadeUp 0.8s ease both;
+}
+
+.hero > *:nth-child(2) { animation-delay: 0.15s; }
+.hero > *:nth-child(3) { animation-delay: 0.3s; }
+.hero > *:nth-child(4) { animation-delay: 0.45s; }
+.hero > *:nth-child(5) { animation-delay: 0.6s; }
+.hero > *:nth-child(6) { animation-delay: 0.75s; }
+
+/* sections fade in when you scroll to them (script.js adds the "show" class) */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ---------- navigation ---------- */
@@ -43,19 +75,19 @@ a {
   justify-content: space-between;
   align-items: center;
   padding: 16px 8%;
-  background: rgba(13, 17, 23, 0.92);
-  border-bottom: 2px solid transparent;
-  border-image: var(--rainbow) 1;
+  background: rgba(15, 20, 27, 0.95);
+  border-bottom: 1px solid #222b36;
   z-index: 10;
 }
 
 .logo {
   font-size: 26px;
   font-weight: bold;
-  background: var(--rainbow);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: white;
+}
+
+.logo span {
+  color: var(--accent);
 }
 
 .nav-links {
@@ -66,17 +98,30 @@ a {
 
 .nav-links a {
   color: var(--text);
+  position: relative;
 }
 
-.nav-links a:hover {
-  color: var(--pink);
+/* a line grows under the link on hover */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
 }
 
 .menu-button {
   display: none;
   background: none;
-  border: 1px solid var(--purple);
-  color: var(--purple);
+  border: 1px solid var(--accent);
+  color: var(--accent);
   padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
@@ -89,30 +134,22 @@ a {
   flex-direction: column;
   justify-content: center;
   padding: 0 8%;
-  /* soft coloured glows in the background */
-  background:
-    radial-gradient(circle at 85% 20%, rgba(167, 139, 250, 0.25), transparent 35%),
-    radial-gradient(circle at 70% 80%, rgba(244, 114, 182, 0.2), transparent 35%),
-    radial-gradient(circle at 15% 70%, rgba(45, 212, 191, 0.18), transparent 35%);
 }
 
 .hello {
-  color: var(--yellow);
-  font-size: 20px;
+  color: var(--accent);
+  font-size: 19px;
 }
 
 .hero h1 {
-  font-size: 60px;
+  font-size: 58px;
+  color: white;
   line-height: 1.1;
-  background: var(--rainbow);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
 }
 
 .hero h2 {
   font-size: 30px;
-  color: white;
+  color: var(--muted);
   margin: 10px 0 20px;
 }
 
@@ -130,26 +167,27 @@ a {
 .button {
   display: inline-block;
   padding: 12px 26px;
-  background: linear-gradient(90deg, var(--teal), var(--blue));
+  background: var(--accent);
   color: var(--dark);
-  border-radius: 30px;
+  border: 2px solid var(--accent);
+  border-radius: 8px;
   font-weight: bold;
+  transition: transform 0.2s, background 0.2s;
 }
 
-.button.outline {
-  background: none;
-  color: var(--purple);
-  border: 2px solid var(--purple);
-}
-
+.button.outline,
 .button.insta {
-  background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
-  color: white;
+  background: none;
+  color: var(--accent);
 }
 
 .button:hover {
-  transform: translateY(-2px);
-  transition: transform 0.2s;
+  transform: translateY(-3px);
+}
+
+.button.outline:hover,
+.button.insta:hover {
+  background: var(--accent-soft);
 }
 
 /* round social icons */
@@ -160,31 +198,30 @@ a {
 }
 
 .social {
-  width: 46px;
-  height: 46px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
+  border: 1px solid #2c3744;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.2s, border-color 0.2s;
 }
 
 .social svg {
-  width: 22px;
-  height: 22px;
-  fill: white;
-}
-
-.social.github {
-  background: #333a45;
-}
-
-.social.instagram {
-  background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
+  width: 20px;
+  height: 20px;
+  fill: var(--text);
+  transition: fill 0.2s;
 }
 
 .social:hover {
-  transform: scale(1.1);
-  transition: transform 0.2s;
+  transform: translateY(-3px);
+  border-color: var(--accent);
+}
+
+.social:hover svg {
+  fill: var(--accent);
 }
 
 /* ---------- sections ---------- */
@@ -193,7 +230,7 @@ section {
 }
 
 .section-title {
-  font-size: 34px;
+  font-size: 32px;
   color: white;
   margin-bottom: 30px;
 }
@@ -201,10 +238,10 @@ section {
 .section-title::after {
   content: "";
   display: block;
-  width: 80px;
-  height: 5px;
-  border-radius: 5px;
-  background: var(--rainbow);
+  width: 60px;
+  height: 4px;
+  border-radius: 4px;
+  background: var(--accent);
   margin-top: 8px;
 }
 
@@ -223,18 +260,15 @@ section {
 .facts div {
   background: var(--card);
   padding: 18px 24px;
-  border-radius: 12px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
 }
 
 .facts b {
-  font-size: 30px;
+  font-size: 28px;
+  color: var(--accent);
 }
-
-.facts div:nth-child(1) b { color: var(--teal); }
-.facts div:nth-child(2) b { color: var(--pink); }
-.facts div:nth-child(3) b { color: var(--yellow); }
 
 /* ---------- skills ---------- */
 .skill-grid {
@@ -246,46 +280,39 @@ section {
 .skill-card {
   background: var(--card);
   padding: 22px;
-  border-radius: 12px;
-  border-top: 4px solid var(--teal);
+  border-radius: 10px;
+  border: 1px solid #222b36;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.skill-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
 }
 
 .skill-card h4 {
+  color: white;
   margin-bottom: 8px;
-  font-size: 18px;
 }
-
-/* every skill card gets its own colour */
-.skill-card:nth-child(1) { border-top-color: var(--teal); }
-.skill-card:nth-child(1) h4 { color: var(--teal); }
-.skill-card:nth-child(2) { border-top-color: var(--blue); }
-.skill-card:nth-child(2) h4 { color: var(--blue); }
-.skill-card:nth-child(3) { border-top-color: var(--purple); }
-.skill-card:nth-child(3) h4 { color: var(--purple); }
-.skill-card:nth-child(4) { border-top-color: var(--pink); }
-.skill-card:nth-child(4) h4 { color: var(--pink); }
-.skill-card:nth-child(5) { border-top-color: var(--orange); }
-.skill-card:nth-child(5) h4 { color: var(--orange); }
-.skill-card:nth-child(6) { border-top-color: var(--yellow); }
-.skill-card:nth-child(6) h4 { color: var(--yellow); }
 
 /* ---------- projects ---------- */
 .project-card {
   background: var(--card);
   padding: 26px;
-  border-radius: 14px;
+  border-radius: 12px;
   margin-bottom: 24px;
-  border-left: 5px solid var(--teal);
+  border: 1px solid #222b36;
+  border-left: 4px solid var(--accent);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-
-.project-card:nth-of-type(2) { border-left-color: var(--purple); }
-.project-card:nth-of-type(3) { border-left-color: var(--pink); }
-.project-card:nth-of-type(4) { border-left-color: var(--orange); }
 
 .project-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(167, 139, 250, 0.15);
-  transition: all 0.2s;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+.project-card.small {
+  border-left-color: var(--blue);
 }
 
 .project-top {
@@ -301,11 +328,6 @@ section {
   color: white;
 }
 
-.project-top a {
-  color: var(--yellow);
-  font-weight: bold;
-}
-
 .project-card ul {
   margin: 12px 0 16px 20px;
 }
@@ -317,21 +339,16 @@ section {
 }
 
 .tags span {
+  background: var(--accent-soft);
+  color: var(--accent);
   padding: 4px 12px;
   border-radius: 20px;
   font-size: 14px;
-  font-weight: bold;
 }
-
-/* the tags take turns with 4 colours */
-.tags span:nth-child(4n+1) { background: rgba(45, 212, 191, 0.15); color: var(--teal); }
-.tags span:nth-child(4n+2) { background: rgba(167, 139, 250, 0.15); color: var(--purple); }
-.tags span:nth-child(4n+3) { background: rgba(244, 114, 182, 0.15); color: var(--pink); }
-.tags span:nth-child(4n+4) { background: rgba(251, 146, 60, 0.15); color: var(--orange); }
 
 /* ---------- education ---------- */
 .timeline {
-  border-left: 4px solid var(--purple);
+  border-left: 3px solid #2c3744;
   padding-left: 24px;
 }
 
@@ -343,12 +360,12 @@ section {
 .timeline-item::before {
   content: "";
   position: absolute;
-  left: -33px;
+  left: -32px;
   top: 6px;
-  width: 14px;
-  height: 14px;
+  width: 13px;
+  height: 13px;
   border-radius: 50%;
-  background: var(--pink);
+  background: var(--accent);
 }
 
 .timeline-item h4 {
@@ -358,13 +375,11 @@ section {
 
 /* ---------- contact ---------- */
 .contact-box {
-  padding: 34px;
-  border-radius: 16px;
+  background: var(--card);
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid #222b36;
   text-align: center;
-  background:
-    linear-gradient(var(--card), var(--card)) padding-box,
-    var(--rainbow) border-box;
-  border: 2px solid transparent;
 }
 
 .contact-box .hero-buttons {
@@ -381,7 +396,7 @@ footer {
   text-align: center;
   padding: 24px;
   color: var(--muted);
-  border-top: 1px solid #1f2a36;
+  border-top: 1px solid #222b36;
 }
 
 footer p {
